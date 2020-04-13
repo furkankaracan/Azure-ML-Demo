@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\myApps\\PricePrediction-API\\PricePrediction-API.csproj": {}
+    "D:\\AzureMLDemo\\PricePrediction-API\\PricePrediction-API.csproj": {}
   },
   "projects": {
-    "D:\\myApps\\PricePrediction-API\\PricePrediction-API.csproj": {
+    "D:\\AzureMLDemo\\PricePrediction-API\\PricePrediction-API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\myApps\\PricePrediction-API\\PricePrediction-API.csproj",
+        "projectUniqueName": "D:\\AzureMLDemo\\PricePrediction-API\\PricePrediction-API.csproj",
         "projectName": "PricePrediction-API",
-        "projectPath": "D:\\myApps\\PricePrediction-API\\PricePrediction-API.csproj",
+        "projectPath": "D:\\AzureMLDemo\\PricePrediction-API\\PricePrediction-API.csproj",
         "packagesPath": "C:\\Users\\furka\\.nuget\\packages\\",
-        "outputPath": "D:\\myApps\\PricePrediction-API\\obj\\",
+        "outputPath": "D:\\AzureMLDemo\\PricePrediction-API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

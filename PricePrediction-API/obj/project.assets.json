@@ -58,11 +58,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\myApps\\PricePrediction-API\\PricePrediction-API.csproj",
+      "projectUniqueName": "D:\\AzureMLDemo\\PricePrediction-API\\PricePrediction-API.csproj",
       "projectName": "PricePrediction-API",
-      "projectPath": "d:\\myApps\\PricePrediction-API\\PricePrediction-API.csproj",
+      "projectPath": "D:\\AzureMLDemo\\PricePrediction-API\\PricePrediction-API.csproj",
       "packagesPath": "C:\\Users\\furka\\.nuget\\packages\\",
-      "outputPath": "d:\\myApps\\PricePrediction-API\\obj\\",
+      "outputPath": "D:\\AzureMLDemo\\PricePrediction-API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

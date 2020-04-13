@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using PricePrediction_API.Models;
 using Newtonsoft.Json;
 using PricePrediction_API.Helpers;
+using Microsoft.Extensions.Configuration;
 
 namespace PricePrediction_API.Controllers
 {
@@ -14,8 +15,14 @@ namespace PricePrediction_API.Controllers
     [ApiController]
     public class PredictController : ControllerBase
     {
+        private readonly IConfiguration _config;
+
         readonly string[] columnNames = new string[] { "make", "body-style", "wheel-base", "engine-size", "horsepower", "peak-rpm", "highway-mpg" };
 
+        public PredictController(IConfiguration config)
+        {
+            _config = config;
+        }
 
         [HttpPost]
         public async Task<IActionResult> PredictPrice(CarModel car)
@@ -56,7 +63,9 @@ namespace PricePrediction_API.Controllers
 
         private async Task<string> InvokeRequestResponseService(CarModel car)
         {
-            const string apiKey = "RKjkbFBXz5yOJ2SvLM4d1N0UjSjZnJO3D0FsXFxfefqE/my6pyOTu8qI/DGc99EvqntZyNPwvCiL7rObYlsAaw==";
+           var apiKey = _config.GetSection("AzureMLSettings:Token").Value;
+           var url = _config.GetSection("AzureMLSettings:Url").Value;
+
             using (var client = new HttpClient())
             {
                 var scoreRequest = new
@@ -102,7 +111,7 @@ namespace PricePrediction_API.Controllers
                     // request.Content = new StringContent(JsonConvert.SerializeObject(car));
                     // request.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-                    client.BaseAddress = new Uri("https://ussouthcentral.services.azureml.net/workspaces/9a262786c5e24526898e2b6de0f4bd6e/services/9209f59e7d0b46d3a5d1f500181a1323/execute?api-version=2.0&details=true");
+                    client.BaseAddress = new Uri(url);
 
                     var content = JsonConvert.SerializeObject(scoreRequest);
                     var buffer = System.Text.Encoding.UTF8.GetBytes(content);
