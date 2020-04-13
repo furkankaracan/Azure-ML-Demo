@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="page-header">
+    <h4>Price Prediction Demo</h4>
+    <p class="lead">This demo uses Azure Machine Learning Studio, ASP.NET Core v3+ and Angular v9+.
+      The parameters send to the ML Studio that works on cloud via API. It computes the result and sends back to the
+      page.</p>
+    <div style="margin-top: 25px;">
+      <h4 style="display: block;" class="lead font-weight-bold">This demo uses real data. The data is open source at
+        kaggle.com</h4>
+    </div>
+  </div>
+<hr>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header text-white" style="background-color: #33ADFF;">Please enter the parameters below...
+        </div>
+        <div class="card-body">
+          <p></p>
+          <form #predictForm="ngForm" id="predictForm" (ngSubmit)="onPredict()">
+
+            <div>
+              <label class="control-label">Select Car Model: {{car.selectedModel}}</label>
+              <select name="carModel" class="custom-select" [(ngModel)]="car.selectedModel">
+                <option *ngFor="let model of carModels" [value]="model">{{model}}</option>
+              </select>
+            </div>
+
+            <div class="form-element">
+              <label class="control-label">Select Body Style: {{car.selectedBody}}</label>
+              <select class="form-control" [(ngModel)]="car.selectedBody" name="bodyStyle">
+                <option *ngFor="let style of bodyStyles" [value]="style">
+                  {{style}}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-element">
+              <label class="control-label">Engine Size: {{car.engineSize}}</label>
+              <input name="engineSize" [(ngModel)]="car.engineSize" type="range" step="1" min="50" max="400"
+                class="custom-range">
+            </div>
+
+            <div class="form-element">
+              <label class="control-label">Horse Power: {{car.horsePower}}</label>
+              <input [(ngModel)]="car.horsePower" name="horsePower" type="range" step="1" min="50" max="400" class="custom-range">
+            </div>
+
+            <div class="form-element">
+              <label class="control-label">Wheel Base: {{car.wheelBase}}</label>
+              <input type="range" name="wheelBase" [(ngModel)]="car.wheelBase" step="1" min="75" max="130" class="custom-range">
+            </div>
+
+            <div class="form-element">
+              <label class="control-label">Peak RPM: {{car.peakRpm}}</label>
+              <input type="range" name="peakRpm" [(ngModel)]="car.peakRpm" step="100" min="3500" max="6500" class="custom-range">
+            </div>
+
+            <div class="form-element">
+              <label class="control-label">Highway MPG: {{car.highwayMpg}}</label>
+              <input type="range" name="highwayMpg" [(ngModel)]="car.highwayMpg" step="1" min="1" max="50" class="custom-range">
+            </div>
+
+            <div class="card-footer" style="margin-top: 25px;">
+              <div class="row">
+                <div class="col">
+                  <button class="btn btn-warning" (click)="onReset(predictForm)">Reset</button>
+                </div>
+                <div class="col">
+                  <button type="submit" class="btn btn-success">Predict</button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="card">
+        <div class="card-header text-white" style="background-color: #33ADFF;">Predict Table</div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-striped" id="tblPrediction">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" style="color: #808080;">#</th>
+                  <th scope="col" style="color: #808080;" *ngFor="let column of columNames">{{column}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let prediction of predictions; let i = index;">
+                  <th>{{i}}</th>
+                  <th scope="row">{{prediction.selectedModel}}</th>
+                  <th scope="row">{{prediction.selectedBody}}</th>
+                  <th scope="row">{{prediction.wheelBase}}</th>
+                  <th scope="row">{{prediction.engineSize}}</th>
+                  <th scope="row">{{prediction.horsePower}}</th>
+                  <th scope="row">{{prediction.peakRpm}}</th>
+                  <th scope="row">{{prediction.highwayMpg}}</th>
+                  <th scope="row">{{prediction.price}}</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="card-footer">
+        <div class="col">
+          <button type="button" class="btn btn-success">Download Table</button>
+          <button style="float: right;" type="button" class="btn btn-danger">Delete Table</button>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
